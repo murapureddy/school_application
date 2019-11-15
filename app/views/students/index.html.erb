@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+
+<h1>Students</h1>
+
+<table>
+  <thead>
+  <tr>
+      <th>Name</th>
+      <th>Standard</th>
+      <th>English</th>
+      <th>Tamil</th>
+      <th>Total</th>
+      <th>Rank</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.standard %></td>
+        <% student.subjectstudent.each do |subject| %>
+          <td><%= subject.marks%></td>
+        <%end %>
+        <% if student.subjectstudent.count == 1 %>
+        <td></td>
+          <%end %>
+        <td><%= student.total %></td>
+        <td><%= student.rank %></td>
+        <td class="edit"><%= link_to 'Edit', edit_student_path(student) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Student', new_student_path %>
